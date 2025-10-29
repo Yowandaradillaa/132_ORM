@@ -28,4 +28,15 @@ app.post('/Komik', async (req, res) => {
     } catch (error) {}
         res.send({ message: error.message });
     });
+
+    app.get('/Komik', async (req, res) => {
+    try {
+        const komik = await db.Komik.findAll();
+        res.send(komik);
+    } catch (error) {
+        res.send({ message: error.message });
+    }
+});
+
+
       
