@@ -21,13 +21,14 @@ db.sequelize.sync()
   });
 
 app.post('/Komik', async (req, res) => {
-    const data = req.body;
-    try {
-        const komik = await db.Komik.create(data);
-        res.send(komik);
-    } catch (error) {}
-        res.send({ message: error.message });
-    });
+  const data = req.body;
+  try {
+    const komik = await db.Komik.create(data);
+    res.send(komik);
+  } catch (error) {
+    res.send({ message: error.message });
+  }
+});
 
     app.get('/Komik', async (req, res) => {
     try {
