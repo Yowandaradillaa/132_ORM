@@ -42,30 +42,41 @@ app.post('/Komik', async (req, res) => {
 app.put('/Komik/:id', async (req, res) => {
     const id = req.params.id;
     const data = req.body;
+
     try {
         const komik = await db.Komik.findByPk(id);
+
         if (!komik) {
             return res.status(404).send({ message: 'Komik not found' });
         }
+
         await komik.update(data);
-        res.send({message: 'Komik updated successfully'});
+        res.send({ message: 'Komik updated successfully' });
+
     } catch (error) {
         res.send({ message: error.message });
     }
 });
 
+
 app.delete('/Komik/:id', async (req, res) => {
     const id = req.params.id;
+
     try {
+        const komik = await db.Komik.findByPk(id);
+
         if (!komik) {
             return res.status(404).send({ message: 'Komik not found' });
         }
+
         await komik.destroy();
-        res.send({message: 'Komik deleted successfully'});
+        res.send({ message: 'Komik deleted successfully' });
+
     } catch (error) {
         res.send({ message: error.message });
     }
 });
+
 
 app.delete('/Komik/:id', async (req, res) => {
     const id = req.params.id;
